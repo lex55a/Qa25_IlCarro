@@ -1,34 +1,55 @@
 package manager;
 
+import models.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class HelperUser extends HelperBase {
-
     public HelperUser(WebDriver wd) {
         super(wd);
     }
 
-    public void openLoginRegistrationForm() {
-        click(By.cssSelector("a[href='/login?url=%2Fsearch']"));
-
+    public void openLoginForm() {
+        click(By.xpath("//a[text()=' Log in ']"));
     }
 
-    public void fillLoginRegistrationForm(String email, String password) {
-        type(By.xpath("//input[@id='email']"),email);
-        type(By.xpath("//input[@id='password']"),password);
+
+    public void fillLoginForm(String email, String password) {
+        type(By.id("email"), email);
+        type(By.id("password"), password);
     }
-    public void submitLogin(){
-        click(By.xpath("//h1[normalize-space()='Log in']"));
+
+    //overloading
+    public void fillLoginForm(User user) {
+        type(By.id("email"), user.getEmail());
+        type(By.id("password"), user.getPassword());
     }
+
+    public void submitLogin() {
+        click(By.xpath("//button[@type='submit']"));
+    }
+
+    public String getMessage() {
+//        WebElement element = wd.findElement(By.cssSelector(".dialog-container>h2"));
+//        String text = element.getText();
+//        //wait
+//        pause(2000);
+//        return text;
+        pause(2000);
+        return wd.findElement(By.cssSelector(".dialog-container>h2")).getText();
+    }
+
+    public void clickOKButton() {
+        click(By.xpath("//button[text()='Ok']"));
+    }
+
     public boolean isLogged() {
-        return isElementPresent(By.xpath("//h1[normalize-space()='Logged in']"));
+        return isElementPresent(By.xpath("//*[text()=' Logout ']"));
     }
 
 
     public void logout() {
-        click(By.xpath("//a[normalize-space()='Logout']"));
+        click(By.xpath("//*[text()=' Logout ']"));
     }
-
 }
