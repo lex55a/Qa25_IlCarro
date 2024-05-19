@@ -29,7 +29,7 @@ public class LoginTests extends TestBase {
 
     @Test
     public void loginSuccess1() {
-        User user = new User().setEmail("8witt8@gmail.com").setPassword("Felix88@ill99");
+        User user = new User().withEmail("8witt8@gmail.com").withPassword("Felix88@ill99");
 //        User user1 = new User();
 //        user1.setEmail().setPassword().setFirstName();
 

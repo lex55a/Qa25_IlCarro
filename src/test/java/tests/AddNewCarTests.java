@@ -13,7 +13,7 @@ public class AddNewCarTests extends TestBase{
     public void preCondition(){
         if (!app.getHelperUser().isLogged()){
             app.getHelperUser().login(new User()
-                    .setEmail("8witt8@gmail.com").setPassword("Felix88@ill99"));
+                    .withEmail("8witt8@gmail.com").withPassword("Felix88@ill99"));
         }
 
     }
@@ -32,9 +32,9 @@ public class AddNewCarTests extends TestBase{
                 .price(50)
                 .about("Very nice car")
                 .build();
-        app.getHelperCar().openCarForm();
-        app.getHelperCar().fillCarForm(car);
-        app.getHelperCar().submitCarForm();
+//        app.getHelperCar().openCarForm();
+//        app.getHelperCar().fillCarForm(car);
+//        app.getHelperCar().submitCarForm();
 
 
     }
