@@ -17,12 +17,12 @@ public class User {
         return this;
     }
 
-    public User withEmail(String email) {
+    public User setEmail(String email) {
         this.email = email;
         return this;
     }
 
-    public User withPassword(String password) {
+    public User setPassword(String password) {
         this.password = password;
         return this;
     }
