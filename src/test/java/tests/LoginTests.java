@@ -12,18 +12,25 @@ public class LoginTests extends TestBase {
     public void preCondition() {
         if (app.getHelperUser().isLogged()) {
             app.getHelperUser().logout();
+            logger.info("Before method finish logout");
         }
     }
 
 
     @Test
     public void loginSuccess() {
+
+        logger.info("Start test with name 'loginSuccess");
+        logger.info("Test data --->: email: '8witt8@gmail.com' & password: 'Felix88@ill99'");
+
         app.getHelperUser().openLoginForm();
         app.getHelperUser().fillLoginForm("8witt8@gmail.com", "Felix88@ill99");
         app.getHelperUser().submit();
         //Assert if element with text "Logged in success" is present
         Assert.assertEquals(app.getHelperUser().getMessage(), "Logged in success");
         //app.getHelperUser().clickOKButton();
+
+        logger.info("Assert check is Element button 'Logged in success' present");
 
     }
 
@@ -59,31 +66,36 @@ public class LoginTests extends TestBase {
 
     @Test
     public void loginWrongEmail(){
+        logger.info("Test data --->: email: '8witt8gmail.com' & password: 'Felix88@ill99'");
         app.getHelperUser().openLoginForm();
         app.getHelperUser().fillLoginForm("luckgmail.com", "Felix88@ill99");
         app.getHelperUser().submit();
         Assert.assertEquals(app.getHelperUser().getErrorText(),"It'snot look like email");
         Assert.assertTrue(app.getHelperUser().isYallaButtonNotActive());
+        logger.info("Assert check is alert  present with error text 'It'snot look like email'");
 
     }
 
     @Test
     public void loginWrongPassword(){
+        logger.info("Test data --->: email: '8witt8gmail.com' & password: 'Felixill99'");
         app.getHelperUser().openLoginForm();
         app.getHelperUser().fillLoginForm("8witt8@gmail.com", "Lluck123456$");
         app.getHelperUser().submit();
         Assert.assertEquals(app.getHelperUser().getMessage(), "\"Login or Password incorrect\"");
+        logger.info("Assert check is alert  present with error text 'Login or Password incorrect'");
         
     }
 
 
     @Test
     public void loginUnregisteredUser(){
+        logger.info("Test data --->: email: 'luck@gmail.com' & password: 'Lluck123456$'");
         app.getHelperUser().openLoginForm();
         app.getHelperUser().fillLoginForm("luck@gmail.com", "Lluck123456$");
         app.getHelperUser().submit();
         Assert.assertEquals(app.getHelperUser().getMessage(), "\"Login or Password incorrect\"");
-
+        logger.info("Assert check is alert  present with error text 'Login or Password incorrect'");
     }
 
 

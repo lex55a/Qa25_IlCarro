@@ -38,6 +38,7 @@ public void preCondition() {
         app.getHelperCar().openCarForm();
         app.getHelperCar().fillCarForm(car);
         app.getHelperCar().attachPhoto("C:\\KVAZAR\\Programming\\QA25\\Qa25_IlCarro\\2023-lamborghini-huracan.jpg");
+        app.getHelperCar().getScreen("src/test/screenshots/screen-"+i+".png");
         app.getHelperCar().submit();
         Assert.assertTrue(app.getHelperCar().getMessage().contains("added successful"));
         Assert.assertEquals(app.getHelperCar().getMessage(),car
