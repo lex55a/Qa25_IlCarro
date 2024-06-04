@@ -20,6 +20,7 @@ public class TestBase {
     logger.info("Name of method -->"+m.getName());
   }
 
+
   @BeforeSuite
   public void setUp(){
     app.init();
