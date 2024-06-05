@@ -1,5 +1,6 @@
 package tests;
 
+import manager.DataProviderUser;
 import models.User;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -17,14 +18,13 @@ public class LoginTests extends TestBase {
     }
 
 
-    @Test
-    public void loginSuccess() {
+    @Test(dataProvider = "loginData", dataProviderClass = DataProviderUser.class)
+    public void loginSuccess(String email, String password) {
 
-        logger.info("Start test with name 'loginSuccess");
-        logger.info("Test data --->: email: '8witt8@gmail.com' & password: 'Felix88@ill99'");
+        logger.info("Test start with test data ---> email : "+email+" & password: "+password);
 
         app.getHelperUser().openLoginForm();
-        app.getHelperUser().fillLoginForm("8witt8@gmail.com", "Felix88@ill99");
+        app.getHelperUser().fillLoginForm(email, password);
         app.getHelperUser().submit();
         //Assert if element with text "Logged in success" is present
         Assert.assertEquals(app.getHelperUser().getMessage(), "Logged in success");
@@ -53,10 +53,11 @@ public class LoginTests extends TestBase {
 
     }
 
-    @Test
-    public void loginSuccessModel() {
+    @Test(dataProvider = "loginModels", dataProviderClass = DataProviderUser.class)
+    public void loginSuccessModel(User user) {
+        logger.info("Test start with test data ---> " +user.toString());
         app.getHelperUser().openLoginForm();
-        app.getHelperUser().fillLoginForm("8witt8@gmail.com", "Felix88@ill99");
+        app.getHelperUser().fillLoginForm(user);
         app.getHelperUser().submit();
         //Assert if element with text "Logged in success" is present
         Assert.assertEquals(app.getHelperUser().getMessage(), "Logged in success");

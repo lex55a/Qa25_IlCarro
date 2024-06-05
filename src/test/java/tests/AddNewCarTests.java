@@ -1,5 +1,6 @@
 package tests;
 
+import manager.DataProviderCars;
 import models.Car;
 import models.User;
 import org.testng.Assert;
@@ -20,21 +21,10 @@ public void preCondition() {
 }
 
 
-    @Test
-    public void addNewCarSuccessAll(){
+    @Test(dataProvider = "carsSuccess", dataProviderClass = DataProviderCars.class)
+    public void addNewCarSuccessAll(Car car){
         int i = new Random().nextInt(1000)+1000;
-        Car car = Car.builder()
-                .location("Tel Aviv, Israel")
-                .manufacture("Mazda")
-                .model("M3")
-                .year("2023")
-                .fuel("Petrol")
-                .seats(4)
-                .carClass("C")
-                .carRegNumber("678-900-"+i)
-                .price(50)
-                .about("Very nice car")
-                .build();
+        logger.info("Test start with test data --->" + car.toString());
         app.getHelperCar().openCarForm();
         app.getHelperCar().fillCarForm(car);
         app.getHelperCar().attachPhoto("C:\\KVAZAR\\Programming\\QA25\\Qa25_IlCarro\\2023-lamborghini-huracan.jpg");
@@ -59,6 +49,7 @@ public void preCondition() {
                 .carRegNumber("678-999-"+i)
                 .price(50)
                 .build();
+        logger.info("Test start with test data --->" + car.toString());
         app.getHelperCar().openCarForm();
         app.getHelperCar().fillCarForm(car);
         app.getHelperCar().submit();
