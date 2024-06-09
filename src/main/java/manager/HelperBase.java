@@ -70,6 +70,19 @@ public class HelperBase {
         }
 
     }
+
+    public void clearTextBox(By locator) {
+        WebElement element = wd.findElement(locator);
+        String os = System.getProperty("os.name");
+        if (os.startsWith("Win")) {
+            element.sendKeys(Keys.CONTROL, "a");
+        } else {
+            element.sendKeys(Keys.COMMAND, "a");
+        }
+        element.sendKeys(Keys.DELETE);
+
+    }
+
     }
 
 
