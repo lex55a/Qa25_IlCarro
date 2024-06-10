@@ -161,4 +161,10 @@ public class HelperCar extends HelperBase{
         click(By.cssSelector("a.logo"));
     }
 
+    public void searchNotValidPeriod(String city, String dateFrom, String dateTo) {
+        typeCity(city);
+        clearTextBox(By.id("dates"));
+        type(By.id("dates"),dateFrom+" - "+dateTo);
+        click(By.cssSelector("div.cdk-overlay-backdrop"));
+    }
 }
